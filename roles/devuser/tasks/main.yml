@@ -1,0 +1,22 @@
+---
+- name: Informations
+  debug:
+    msg: Install Dev Tools
+
+#vim-minimal, git, gitk,  python-virtualenv, 
+# -------------------------------------
+# - Install tools
+# -------------------------------------
+- name: Install Dev Tools
+  yum:
+    name: "{{ item.name  }}"
+    state: "{{ item.version }}"
+  with_items:
+    - { name: vim-minimal, version: latest }
+    - { name: git , version: latest }
+    - { name: gitk, version: latest }
+    - { name: python-virtualenv, version: latest }
+    - { name: terminator, version: latest }
+    - { name: gcc, version: latest }
+
+

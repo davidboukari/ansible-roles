@@ -1,0 +1,47 @@
+---
+- name: Informations
+  debug:
+    msg: Install graphicuser
+
+# -------------------------------------
+# - Install mate
+# -------------------------------------
+- name: Install Mate
+  yum:
+    name: "@MATE"
+    state: present
+
+# -------------------------------------
+# - Install tigervnc-server
+# -------------------------------------
+- name: Install vnc
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages: 
+      - tigervnc-server-minimal
+      - tigervnc-server
+      - terminator
+
+- name: Create graphical user vnc config path
+  file: 
+    path: "{{ graphical_user_vnc_config_dir }}"
+    state: directory 
+    owner: "{{ graphical_user }}"
+    group: "{{ graphical_user }}"
+    mode: 0750
+    
+# -------------------------------------
+# - Install tigervnc-server
+# -------------------------------------
+- name: Create xstartup
+  template: 
+    src:  xstartup.j2
+    dest: "{{ graphical_user_vnc_config_dir }}/xstartup"
+    owner: "{{ graphical_user }}"
+    group: "{{ graphical_user }}"
+    mode:  0750
+  
+    
+

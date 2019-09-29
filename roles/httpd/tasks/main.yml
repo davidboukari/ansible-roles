@@ -1,0 +1,79 @@
+---
+- name: Informations
+  debug:
+    msg: Informations...
+
+#- import_tasks: yum-lock-wait.yaml
+#
+#- name: Install yum utils
+#  package:
+#    name:
+#    - yum-utils
+#    - "@Development tools"
+
+## -------------------------------------------
+## - Install package by using yum
+## -------------------------------------------
+#- name: Install vim latest
+#  yum:
+#    name: vim-minimal
+#    state: latest
+#
+#- name: Install sed version 4.2.2-5.el7
+#  yum:
+#    name: sed-4.2.2-5.el7
+#    state: present
+
+
+# -------------------------------------------
+# - Create a directory
+# -------------------------------------------
+- name: Create Test Directory
+  file:
+    path: /tmp/test_dir
+    state: directory
+    owner: packt
+    mode: 0750
+
+# -------------------------------------------
+# - Create a symlink
+# -------------------------------------------
+- name: Create Symlink File
+  file:
+    path: /tmp/test_symlink
+    src:  /tmp/test_file
+    state: link
+  #when: result_test_file | success
+  when: result_test_file is success
+
+# -------------------------------------------
+# - Create a file
+# -------------------------------------------
+- name: Create Test File
+  file: 
+    path:  /tmp/test_file
+    state: touch
+    owner: packt
+    mode: u=rw,g=r,o=-
+    #mode: 0640
+  register: result_test_file
+
+   
+# -------------------------------------------
+# - Copy a file
+# -------------------------------------------
+
+# -------------------------------------------
+# - Copy a file
+# -------------------------------------------
+
+# -------------------------------------------
+# - Using Template
+# -------------------------------------------
+
+# -------------------------------------------
+# - Using new Facts
+# -------------------------------------------
+
+
+

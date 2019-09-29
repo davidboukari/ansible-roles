@@ -1,0 +1,72 @@
+---
+- name: Informations
+  debug:
+    msg: Install graphicuser
+
+# -------------------------------------
+# - Install mate
+# -------------------------------------
+- name: Install Xorg
+  yum:
+    name: "@X Window system"
+    #name: "@x11"
+    state: present
+
+
+# -------------------------------------
+# - Install mate
+# -------------------------------------
+- name: Install mate
+  yum:
+    name: "@^mate-desktop-environment" 
+    #name: "@MATE Desktop" 
+    state: present
+#    update_cache: yes
+
+# -------------------------------------
+# - Install tigervnc-server
+# -------------------------------------
+- name: Install vnc
+  yum:
+    name: tigervnc-server
+    state: latest
+
+- name: Create graphical user vnc config path
+  file: 
+    path: "{{ graphical_user_vnc_config_dir }}"
+    state: directory 
+    owner: "{{ graphical_user }}"
+    group: "{{ graphical_user }}"
+    mode: 0750
+    
+# -------------------------------------
+# - Install tigervnc-server
+# -------------------------------------
+- name: Create xstartup
+  template: 
+    src:  xstartup.j2
+    dest: "{{ graphical_user_vnc_config_dir }}/xstartup"
+    owner: "{{ graphical_user }}"
+    group: "{{ graphical_user }}"
+    mode:  0750
+
+## -------------------------------------
+## - Add systemd unit
+## -------------------------------------
+#- name: Install vnc as service
+#  template:
+#    src:  vnc.service.j2
+#    dest: '/etc/systemd/system/vnc.service'
+#    owner: "root"
+#    group: "root"
+#    mode:  0750
+#        
+# 
+## -------------------------------------
+## - Install tigervnc-server
+## -------------------------------------
+#- name: Install vnc service
+#  systemd: 
+#    name:  vnc
+#    state: started     
+

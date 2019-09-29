@@ -1,0 +1,21 @@
+---
+- name: Informations
+  debug:
+    msg: Install graphicuser
+
+- name: Create my service systemd unit file
+  template:
+    src: 'myservice.service.j2'
+    dest: '/etc/systemd/system/myservice.service'
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Start my service
+  systemd:
+    name: myservice
+    state: started
+
+ 
+    
+
