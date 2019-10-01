@@ -10,6 +10,7 @@
     owner: root
     group: root
     mode: 0755
+    #daemon_reload: true
 
 - name: Start my service
   systemd:

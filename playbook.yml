@@ -6,6 +6,6 @@
     #- repo
     #- devuser
     #- graphicuser
-    - vncuser
-    #- myservice
+    #- vncuser
+    - myservice
 
