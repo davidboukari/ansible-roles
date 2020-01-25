@@ -4,7 +4,7 @@ Install some roles
 
 ## Install ansible
 
-``bash
+```bash
 $ sudo yum install python3
 $ python3 -m venv venv-ansible
 $ source venv-ansible/bin/activate
