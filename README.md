@@ -2,7 +2,15 @@
 
 Install some roles
 
-## Ansible Roles
+## Install ansible
+
+``bash
+$ sudo yum install python3
+$ python3 -m venv venv-ansible
+$ source venv-ansible/bin/activate
+$ pip install ansible
+$ ansible-galaxy
+```
 
 ## Install roles
 ansible-playbook  -b -vvv  playbook.yml
