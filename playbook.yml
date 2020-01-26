@@ -1,11 +1,11 @@
 ---
 -
-#  vars:
+  vars:
   hosts: localhost
   roles: 
-    #- repo
-    #- devuser
-    #- graphicuser
-    #- vncuser
+    - repo
+    - devuser
+    - graphicuser
+    - vncuser
     - myservice
 

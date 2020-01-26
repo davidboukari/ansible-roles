@@ -26,9 +26,11 @@
 # - Install libXfont pixman 
 # -------------------------------------
 - name: Install libXfont
-  yum: "{{ item }}"
+  yum: 
+    name: "{{ packages }}"
     state: present
-    loop:
+  vars:  
+    packages:
       - pixman 
       - pixman-devel 
       - libXfont
@@ -78,8 +80,9 @@
 # - Systemd set default target
 # -------------------------------------
 - name: set the default target to "graphical.target", it will be applied on next boot (2.10 and above)
-  systemd:
-   default_set: graphical.target
+  shell: systemctl set-default graphical.target
+  args:
+    chdir: /usr/bin
 
 ## -------------------------------------
 ## - Add systemd unit
