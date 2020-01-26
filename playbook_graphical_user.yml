@@ -1,0 +1,11 @@
+---
+-
+  vars:
+  hosts: localhost
+  roles: 
+    - repo
+    - devuser
+    - graphicuser
+    #- vncuser
+    #- myservice
+
