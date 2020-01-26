@@ -12,7 +12,6 @@
     #name: "@x11"
     state: present
 
-
 # -------------------------------------
 # - Install mate
 # -------------------------------------
@@ -24,6 +23,28 @@
 #    update_cache: yes
 
 # -------------------------------------
+# - Install libXfont pixman 
+# -------------------------------------
+- name: Install libXfont
+  yum: "{{ item }}"
+    state: present
+    loop:
+      - pixman 
+      - pixman-devel 
+      - libXfont
+      - xorg-x11-fonts-*
+      - xorg-x11-xauth 
+      # - atk
+      # - gdk-pixbuf2
+      # - gtk2
+      # - libXScrnSaver
+      # - libXtst
+      # - libgudev1
+      # - libxkbfile
+      # - xorg-x11-fonts-*
+      # - xorg-x11-xauth      
+     
+# -------------------------------------
 # - Install tigervnc-server
 # -------------------------------------
 - name: Install vnc
@@ -31,6 +52,9 @@
     name: tigervnc-server
     state: latest
 
+# -------------------------------------
+# - Create graphical user vnc config path
+# -------------------------------------
 - name: Create graphical user vnc config path
   file: 
     path: "{{ graphical_user_vnc_config_dir }}"
@@ -49,6 +73,13 @@
     owner: "{{ graphical_user }}"
     group: "{{ graphical_user }}"
     mode:  0750
+
+# -------------------------------------
+# - Systemd set default target
+# -------------------------------------
+- name: set the default target to "graphical.target", it will be applied on next boot (2.10 and above)
+  systemd:
+   default_set: graphical.target
 
 ## -------------------------------------
 ## - Add systemd unit
