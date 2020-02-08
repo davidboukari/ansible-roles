@@ -28,3 +28,17 @@ cat playbook.yml
     - vncuser
     - myservice
 ```
+
+
+## Troubleshooting
+
+### vncserver error font path
+
+* https://github.com/davidboukari/xorg-x11-vnc
+
+```bash
+yum install pixman pixman-devel libXfont
+yum update libXfont
+vncserver -geometry   -fp /etc/X11/fontpath.d
+```
+
