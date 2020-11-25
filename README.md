@@ -12,6 +12,7 @@ pip install ansible
 
 #Create a role
 ansible-galaxy init roles/sudouser
+ansible-playbook -e 'sudo_user=toto'  playbook.yml
 ```
 
 ## Install roles

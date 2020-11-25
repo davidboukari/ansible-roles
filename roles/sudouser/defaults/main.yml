@@ -1,0 +1,5 @@
+---
+# defaults file for roles/sudouser
+
+sudo_user: myuser
+sudo_group: "{{ sudo_user }}"

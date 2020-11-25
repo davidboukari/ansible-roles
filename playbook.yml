@@ -3,9 +3,10 @@
   vars:
   hosts: localhost
   roles: 
-    - repo
-    - devuser
-    - graphicuser
-    - vncuser
-    - myservice
+     - sudouser   
+#    - repo
+#    - devuser
+#    - graphicuser
+#    - vncuser
+#    - myservice
 

@@ -1,0 +1,23 @@
+---
+# tasks file for roles/sudouser
+
+- name: Create group "{{ sudo_group }}"
+  group:
+    name: "{{ sudo_group }}"
+    state: present
+
+- name: Create user "{{ sudo_user }}"
+  user: 
+    name: "{{ sudo_user }}"
+
+- name: Create the sudo files "/etc/sudoers.d/{{ sudo_user }}"
+  template:
+    src: sudofile.j2
+    dest: "/etc/sudoers.d/{{ sudo_user }}"
+    mode: 0700
+
+- name: Add public key to authorized_keys
+  ansible.posix.authorized_key:
+    user: "{{ sudo_user }}"
+    state: present
+    key: "{{ lookup('file', 'id_rsa.pub') }}"    
