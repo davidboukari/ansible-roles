@@ -10,9 +10,14 @@ python3 -m venv venv-ansible
 source venv-ansible/bin/activate
 pip install ansible
 
-#Create a role
+# Create a role
 ansible-galaxy init roles/sudouser
+
+# Create a sudo user
 ansible-playbook -e 'sudo_user=toto'  playbook.yml
+
+# Patch podman 
+ansible-galaxy -e 'podman_user=toto podman_group=toto' playbook.yml
 ```
 
 ## Install roles
@@ -25,6 +30,8 @@ cat playbook.yml
   vars:
   hosts: localhost
   roles:
+    - patchcentos4podman
+    - sudouser
     - repo
     - devuser
     - graphicuser
