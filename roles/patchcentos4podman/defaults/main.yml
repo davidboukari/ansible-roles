@@ -1,0 +1,5 @@
+---
+# defaults file for roles/patchcentos4podman
+podman_user: podman_user
+podman_group: "{{ podman_user }}"
+

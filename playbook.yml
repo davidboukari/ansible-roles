@@ -3,7 +3,8 @@
   vars:
   hosts: localhost
   roles: 
-     - sudouser   
+    - patchcentos4podman    
+#     - sudouser   
 #    - repo
 #    - devuser
 #    - graphicuser

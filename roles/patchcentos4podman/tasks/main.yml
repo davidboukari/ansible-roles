@@ -1,0 +1,39 @@
+---
+# tasks file for roles/patchcentos4podman
+
+- name: Patch /etc/sysctl.conf user.max_user_namespaces
+  lineinfile:
+    path: /etc/sysctl.conf
+    line: user.max_user_namespaces=15000 
+    create: yes
+
+- name: Patch /etc/sysctl.conf kernel.keys.maxkeys
+  lineinfile:
+    path: /etc/sysctl.conf
+    line: kernel.keys.maxkeys=5000
+    create: yes
+
+- name: Patch /etc/security/limits.conf soft
+  lineinfile:
+    path: /etc/security/limits.conf
+    line: "*    soft    nofile    1048576"
+    create: yes
+
+- name: Patch /etc/security/limits.conf hard
+  lineinfile:
+    path: /etc/security/limits.conf
+    line: "*    hard    nofile    1048576"
+    create: yes
+
+- name: Patch /etc/subuid uid={{ podman_user }}
+  lineinfile:
+    path: /etc/subuid
+    line: "{{ podman_user }}:100000:65536"
+    create: yes
+
+- name: Patch /etc/subgid gid={{ podman_group }}
+  lineinfile:
+    path: /etc/subgid
+    line: "{{ podman_group }}:100000:65536"
+    create: yes
+
