@@ -44,7 +44,7 @@ ansible-galaxy init roles/sudouser
 ansible-playbook -e 'sudo_user=toto'  playbook.yml
 
 # Patch podman 
-ansible-galaxy -e 'podman_user=toto podman_group=toto' playbook.yml
+ansible-playbook -e 'podman_user=toto podman_group=toto' playbook.yml
 ```
 
 ## Install roles
