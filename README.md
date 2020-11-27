@@ -4,9 +4,21 @@ Install some roles
 
 ## Configure ssh keys
 
+### ssh-install-keys
 ```bash
-IPDEST=192...
-USER=root
+#!/bin/bash
+
+function usage(){
+  echo "$0 <IP> <USER>"
+}
+
+if [ $# -lt 2 ];then
+  usage
+  exit 10
+fi
+
+IPDEST=$1
+USER=$2
 ssh-copy-id -i ~/.ssh/id_rsa.pub ${USER}@${IP}
 scp -i ~/.ssh/id_rsa* root@${IP}:/root/.ssh
 ```
