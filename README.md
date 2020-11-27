@@ -2,6 +2,15 @@
 
 Install some roles
 
+## Configure ssh keys
+
+```bash
+IPDEST=192...
+USER=root
+ssh-copy-id -i ~/.ssh/id_rsa.pub ${USER}@${IP}
+scp -i ~/.ssh/id_rsa* root@${IP}:/root/.ssh
+```
+
 ## Install ansible
 
 ```bash
