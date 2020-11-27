@@ -1,0 +1,8 @@
+---
+# defaults file for roles/base-tools
+packages_to_install:
+  - vim
+  - iptraf
+  - traceroute
+  - iproute
+  
