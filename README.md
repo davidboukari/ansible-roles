@@ -20,7 +20,7 @@ fi
 IPDEST=$1
 USER=$2
 ssh-copy-id -i ~/.ssh/id_rsa.pub ${USER}@${IP}
-scp -i ~/.ssh/id_rsa* root@${IP}:/root/.ssh
+scp -i ~/.ssh/id_rsa* ${USER}@${IP}:/home/${USER}/.ssh
 ```
 
 ## Install ansible
