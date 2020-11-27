@@ -9,7 +9,7 @@ Install some roles
 #!/bin/bash
 
 function usage(){
-  echo "$0 <IP> <USER>"
+  echo "$0 <USER> <IP>"
 }
 
 if [ $# -lt 2 ];then
@@ -17,10 +17,16 @@ if [ $# -lt 2 ];then
   exit 10
 fi
 
-IPDEST=$1
-USER=$2
-ssh-copy-id -i ~/.ssh/id_rsa.pub ${USER}@${IP}
-scp -i ~/.ssh/id_rsa* ${USER}@${IP}:/home/${USER}/.ssh
+USER=$1
+IPDEST=$2
+if [ "$USER" = "root" ];then
+  home=/root
+else
+  home=/home/${USER}
+fi
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub ${USER}@${IPDEST}
+scp  ~/.ssh/id_rsa* root@${IPDEST}:/${home}/.ssh
 ```
 
 ## Install ansible
