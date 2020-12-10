@@ -1,0 +1,8 @@
+---
+# tasks file for roles/xorg_mini
+
+- name: Install x11 minimal packages for forwarding
+  package:
+    name: "{{ list_packages }}" 
+    state: present
+

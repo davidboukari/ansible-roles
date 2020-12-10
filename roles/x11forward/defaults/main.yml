@@ -1,0 +1,7 @@
+---
+# defaults file for roles/xorg_mini
+
+list_packages:
+  - xorg-x11-server-Xorg 
+  - xorg-x11-xauth 
+  - xorg-x11-apps
